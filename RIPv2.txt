@@ -1,0 +1,46 @@
+Router#9:
+Router(config-if)#router rip
+Router(config-router)#version 2
+Router(config-router)#network 172.16.1.0
+Router(config-router)#network 140.1.0.0
+Router(config-router)#network 211.1.0.0
+Router(config-router)#exit
+
+Router#10:
+Router(config)#router rip
+Router(config-router)#version 2
+Router(config-router)#network 140.1.0.0
+Router(config-router)#network 140.2.0.0
+Router(config-router)#exit
+
+Router#11:
+Router(config)#router rip
+Router(config-router)#version 2
+Router(config-router)#network 140.2.0.0
+Router(config-router)#network 172.16.2.0
+Router(config-router)#network 210.1.0.0
+Router(config-router)#exit
+
+Router#0:
+Router(config)#router rip
+Router(config-router)#version 2
+Router(config-router)#network 211.1.0.0
+Router(config-router)#network 70.1.0.0
+Router(config-router)#network 192.168.0.0
+Router(config-router)#exit
+
+Router#1:
+Router(config-router)#version 2
+Router(config-router)#network 70.1.0.0
+Router(config-router)#network 70.2.0.0
+Router(config-router)#network 192.168.1.0
+Router(config-router)#network 192.168.2.0
+Router(config-router)#exit
+
+Router#2:Router(config)#router rip
+Router(config-router)#version 2
+Router(config-router)#network 70.2.0.0
+Router(config-router)#network 192.168.3.0
+Router(config-router)#network 192.168.4.0
+Router(config-router)#network 210.1.0.0
+Router(config-router)#exit

@@ -1,0 +1,28 @@
+Router#2:
+Router(config)#router eigrp 7743
+Router(config-router)#redistribute rip metric 10000 0 255 1 1500
+Router(config-router)#redistribute ospf 7743 metric 10000 0 255 1 1500
+Router(config-router)#redistribute static metric 10000 0 255 1 1500
+Router(config-router)#network 213.1.0.0
+Router(config-router)#no auto-summary
+Router(config-router)#exit
+
+Router(config)#router ospf 7743
+Router(config-router)#redistribute rip metric 200 subnets
+Router(config-router)#redistribute eigrp 7743 metric 200 subnets
+Router(config-router)#redistribute static metric 200 subnets
+Router(config-router)#network 217.1.1.0 0.0.0.3 area 0
+Router(config-router)#exit
+
+Router(config)#router rip
+Router(config-router)#version 2
+Router(config-router)#redistribute eigrp 7743 metric 4
+Router(config-router)#redistribute ospf 7743 metric 4
+Router(config-router)#redistribute static metric 4
+Router(config-router)#network 210.1.0.0
+Router(config-router)#no auto-summary
+Router(config-router)#exit
+
+Router(config)#ip route 0.0.0.0 255.255.255.255 217.1.0.2
+Router(config)#ip route 0.0.0.0 255.255.255.255 210.1.0.2
+Router(config)#ip route 0.0.0.0 255.255.255.255 213.1.0.2

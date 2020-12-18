@@ -1,0 +1,25 @@
+ROUTER#1:
+
+EMAIL:
+Router(config)#access-list 102 permit tcp host 192.168.2.6 host 192.168.3.2 eq smtp //25
+Router(config)#access-list 102 deny tcp any host 192.168.3.2 eq smtp //25
+Router(config)#access-list 102 permit ip any any
+Router(config)#interface serial0/0/1
+Router(config-if)#ip address 70.2.0.2 255.255.255.252
+Router(config-if)#ip access-group 102 out
+
+DNS:
+Router(config)#access-list 103 permit tcp host 192.168.2.6 host 192.168.3.3 eq 53 //dns
+Router(config)#access-list 102 deny tcp any host 192.168.3.3 eq 53 //dns
+Router(config)#access-list 102 permit ip any any
+Router(config)#interface serial0/0/1
+Router(config-if)#ip address 70.2.0.2 255.255.255.252
+Router(config-if)#ip access-group 102 out
+
+WEB-Server:
+Router(config)#access-list 102 permit tcp host 192.168.2.6 host 192.168.3.4 eq www //80
+Router(config)#access-list 102 deny tcp any host 192.168.3.4 eq www //80
+Router(config)#access-list 102 permit ip any any
+Router(config)#interface serial0/0/1
+Router(config-if)#ip address 70.2.0.2 255.255.255.252
+Router(config-if)#ip access-group 102 out
